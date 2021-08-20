@@ -1,12 +1,14 @@
-use axum::{prelude::*, routing::BoxRoute};
+use axum::handler::get;
+use axum::Router;
 
 #[tokio::main]
 async fn main() {
     start().await;
 }
 
-async fn start(){
-    let app = route("/a", get(get_a))
+async fn start() {
+    let app = Router::new()
+        .route("/a", get(get_a))
         .route("/b", get(get_b))
         .route("/c", get(get_c))
         .route("/d", get(get_d))
@@ -14,7 +16,15 @@ async fn start(){
         .route("/f", get(get_f))
         .route("/g", get(get_g))
         .route("/h", get(get_h))
-        // Remove boxed, and the compile-time goes from around 10 seconds to around a second.
+        .route("/h", get(get_h))
+        .route("/h", get(get_h))
+        .route("/h", get(get_h))
+        .route("/h", get(get_h))
+        .route("/h", get(get_h))
+        .route("/h", get(get_h))
+        .route("/h", get(get_h))
+        .route("/h", get(get_h))
+        // Remove boxed, and the cargo check goes from around 10 seconds to around a second.
         .boxed();
 
     axum::Server::bind(&"0.0.0.0:3000".parse().unwrap())
