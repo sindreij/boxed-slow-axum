@@ -19,12 +19,7 @@ async fn start() {
         .route("/h", get(get_h))
         .route("/h", get(get_h))
         .route("/h", get(get_h))
-        .route("/h", get(get_h))
-        .route("/h", get(get_h))
-        .route("/h", get(get_h))
-        .route("/h", get(get_h))
-        .route("/h", get(get_h))
-        // Remove boxed, and the cargo check goes from around 10 seconds to around a second.
+        // Remove boxed, and the `cargo check` goes from multiple minutes to around a second.
         .boxed();
 
     axum::Server::bind(&"0.0.0.0:3000".parse().unwrap())
