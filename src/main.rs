@@ -14,7 +14,7 @@ async fn start(){
         .route("/f", get(get_f))
         .route("/g", get(get_g))
         .route("/h", get(get_h))
-        // Remove boxed, and the compile-time goes from around a minute to around a second.
+        // Remove boxed, and the compile-time goes from around 10 seconds to around a second.
         .boxed();
 
     axum::Server::bind(&"0.0.0.0:3000".parse().unwrap())
